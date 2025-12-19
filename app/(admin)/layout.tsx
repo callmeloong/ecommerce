@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { SWRProvider } from "@/providers/swr-provider";
 
 type Props = {
     children: React.ReactNode
@@ -15,5 +16,5 @@ export default async function AdminLayout({ children }: Props) {
         redirect("/login");
     }
 
-    return <>{children}</>
+    return <SWRProvider>{children}</SWRProvider>
 }

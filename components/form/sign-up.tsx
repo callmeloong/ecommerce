@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 type FormSignUp = {
     fullName: string;
+    email: string;
     username: string;
     password: string;
 }
@@ -22,6 +23,7 @@ const signUpSchema = z.object({
         .min(6, "Username must be at least 6 characters")
         .max(20, "User name must be at most 20 characters")
         .regex(/^[a-zA-Z0-9_]+$/, "Invalid username format"),
+    email: z.email('Invalid email'),
     password: z.string()
         .min(6, "Password must be at least 8 characters")
         .max(100, "Full name must be at most 100 characters")
@@ -41,9 +43,6 @@ export function SignUpForm() {
             body: JSON.stringify({ email: username, password, name: fullName }),
         });
 
-        console.log(res);
-        
-
         if (!res.ok) {
             alert("Đăng ký thất bại");
             return;
@@ -59,6 +58,13 @@ export function SignUpForm() {
                 Full Name
             </FieldLabel>
             <Input {...register('fullName')} />
+        </Field>
+
+        <Field>
+            <FieldLabel>
+                Email
+            </FieldLabel>
+            <Input {...register('email')} />
         </Field>
 
         <Field>

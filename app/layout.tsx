@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { NextIntlClientProvider } from 'next-intl';
 
 const beVietNamPro = Be_Vietnam_Pro({
   subsets: ["latin"],
@@ -26,8 +27,10 @@ export default function RootLayout({
       <body
         className={`${beVietNamPro.className} antialiased`}
       >
-        <Toaster position="top-right" />
-        {children}
+        <NextIntlClientProvider>
+          <Toaster position="top-right" />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

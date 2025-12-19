@@ -162,6 +162,23 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type EnumStoreRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.StoreRole | Prisma.EnumStoreRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel> | $Enums.StoreRole
+}
+
+export type EnumStoreRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.StoreRole | Prisma.EnumStoreRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStoreRoleWithAggregatesFilter<$PrismaModel> | $Enums.StoreRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -321,6 +338,23 @@ export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumStoreRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.StoreRole | Prisma.EnumStoreRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel> | $Enums.StoreRole
+}
+
+export type NestedEnumStoreRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.StoreRole | Prisma.EnumStoreRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.StoreRole[] | Prisma.ListEnumStoreRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumStoreRoleWithAggregatesFilter<$PrismaModel> | $Enums.StoreRole
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumStoreRoleFilter<$PrismaModel>
 }
 
 

@@ -1,5 +1,6 @@
 import StoreDialog from "@/components/admin/store-management/store-dialog";
 import StoreItem from "@/components/admin/store-management/store-item";
+import StoreForm from "@/components/form/store";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
@@ -15,9 +16,11 @@ export default function StoresPage() {
             } />
         </div>
 
-        <div className="flex flex-col gap-4">
+        <StoreForm />
+
+        {/* <div className="flex flex-col gap-4">
             <StoreItem />
-        </div>
+        </div> */}
     </div >
 
 }

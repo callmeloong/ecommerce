@@ -1,0 +1,10 @@
+{
+  "login-page": {
+    "title": "Welcome back!",
+    "sub-title": "Enter your credential to access the control panel.",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "incorrect-credential": "Incorrect credential. Please try again."
+  }
+}

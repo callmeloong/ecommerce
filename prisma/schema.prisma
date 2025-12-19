@@ -45,14 +45,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
+  username      String?       @unique
+  email         String?       @unique
+  emailVerified DateTime?     @map("email_verified")
   image         String?
   accounts      Account[]
   sessions      Session[]
   password      String // dùng cho Credentials
+  storeMembers  StoreMember[]
 
   @@map("users")
 }
@@ -64,4 +66,55 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+//////////////////////////////////////////////////
+// STORE SCHEMAS
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// ENUMS
+//////////////////////////////////////////////////
+
+enum StoreRole {
+  OWNER
+  ADMIN
+  STAFF
+}
+
+//////////////////////////////////////////////////
+// STORE (Tenant)
+//////////////////////////////////////////////////
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique // dùng cho URL: /{slug}/dashboard
+  domain    String?  @unique // subdomain/custom-domain (optional)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members StoreMember[]
+
+  @@map("stores")
+}
+
+//////////////////////////////////////////////////
+// STORE MEMBER (User <-> Store)
+//////////////////////////////////////////////////
+
+model StoreMember {
+  id        String    @id @default(cuid())
+  storeId   String    @map("store_id")
+  userId    String    @map("user_id")
+  role      StoreRole
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([storeId, userId])
+  @@index([userId])
+  @@index([storeId])
+  @@map("store_members")
 }

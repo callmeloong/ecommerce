@@ -64,3 +64,13 @@ export type User = Prisma.UserModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model Store
+ * 
+ */
+export type Store = Prisma.StoreModel
+/**
+ * Model StoreMember
+ * 
+ */
+export type StoreMember = Prisma.StoreMemberModel

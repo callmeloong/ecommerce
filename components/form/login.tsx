@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 type FormLogin = {
     username: string;
@@ -33,6 +34,7 @@ export default function LoginForm() {
     const { register, handleSubmit } = useForm<FormLogin>({ resolver: zodResolver(loginSchema) })
     const router = useRouter();
     const q = useSearchParams()
+    const t = useTranslations('login-page')
 
     const onSubmit = handleSubmit(async ({ username, password }) => {
         const callbackUrl = q.get('callbackUrl') || "/dashboard"
@@ -48,7 +50,7 @@ export default function LoginForm() {
 
 
         if (!res?.ok) {
-            toast("Sai tài khoản hoặc mật khẩu");
+            toast(t('incorrect-credential'));
         } else {
             router.push('/dashboard')
         }
@@ -59,18 +61,18 @@ export default function LoginForm() {
     return <form onSubmit={(e) => { e.preventDefault(); onSubmit() }} className="flex flex-col gap-6">
         <Field>
             <FieldLabel>
-                Username
+                {t('username')}
             </FieldLabel>
             <Input {...register('username')} />
         </Field>
 
         <Field>
             <FieldLabel>
-                Password
+                {t('password')}
             </FieldLabel>
             <Input type="password" {...register('password')} />
         </Field>
 
-        <Button type="submit">Login</Button>
+        <Button type="submit">{t('login')}</Button>
     </form >
 }

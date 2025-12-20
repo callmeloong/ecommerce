@@ -9,6 +9,7 @@ import {
     LifeBuoy,
     Map,
     PieChart,
+    ScanBarcode,
     Send,
     Settings2,
     SquareTerminal,
@@ -36,22 +37,26 @@ const data = {
     },
     navMain: [
         {
-            title: "Playground",
-            url: "#",
-            icon: SquareTerminal,
+            title: "Products",
+            url: "/products",
+            icon: ScanBarcode,
             isActive: true,
             items: [
                 {
-                    title: "History",
-                    url: "#",
+                    title: "Product list",
+                    url: "/products",
                 },
                 {
-                    title: "Starred",
-                    url: "#",
+                    title: "Collections",
+                    url: "/products/collections",
                 },
                 {
-                    title: "Settings",
-                    url: "#",
+                    title: "Attributes",
+                    url: "/products/attributes",
+                },
+                {
+                    title: "Report Analytics",
+                    url: "/products/report-analytics",
                 },
             ],
         },

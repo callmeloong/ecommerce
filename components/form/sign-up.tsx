@@ -37,10 +37,10 @@ export function SignUpForm() {
     const { register, handleSubmit } = useForm<FormSignUp>({ resolver: zodResolver(signUpSchema) })
     const router = useRouter();
 
-    const onSubmit = handleSubmit(async ({ fullName, username, password }) => {
+    const onSubmit = handleSubmit(async ({ fullName, email, password }) => {
         const res = await fetch("/api/auth/signup", {
             method: "POST",
-            body: JSON.stringify({ email: username, password, name: fullName }),
+            body: JSON.stringify({ email: email, password, name: fullName }),
         });
 
         if (!res.ok) {

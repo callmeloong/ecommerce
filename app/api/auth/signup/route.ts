@@ -6,6 +6,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { email, password, name } = body;
+    console.log(body);
 
     if (!email || !password) {
       return NextResponse.json(
@@ -26,6 +27,11 @@ export async function POST(req: Request) {
     }
 
     const hashedPassword = await hash(password, 10);
+    console.log({
+      email,
+      password: hashedPassword,
+      name,
+    });
 
     await prisma.user.create({
       data: {

@@ -9,8 +9,8 @@ export default function SignupPage() {
         <div className="col-span-3 flex justify-center items-center">
             <div className="flex flex-col gap-8 max-w-[400px] mx-auto">
                 <div className="flex flex-col gap-3">
-                    <h1 className="text-3xl font-bold">Sign up</h1>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex adipisci nam, sint error itaque ipsam necessitatibus laudantium molestias rerum excepturi ratione fugiat ullam quia, quisquam maiores eum sed aut suscipit.</span>
+                    <h1 className="text-3xl font-bold">Sign up for a free account</h1>
+                    <span className="text-muted-foreground">Managing your store is easier than ever!</span>
                 </div>
 
                 <SignUpForm />

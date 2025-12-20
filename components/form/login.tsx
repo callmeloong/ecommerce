@@ -12,15 +12,12 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
 type FormLogin = {
-    username: string;
+    email: string;
     password: string;
 }
 
 const loginSchema = z.object({
-    username: z.string()
-        .min(6, "Username must be at least 6 characters")
-        .max(20, "User name must be at most 20 characters")
-        .regex(/^[a-zA-Z0-9_]+$/, "Invalid username format"),
+    email: z.email('Invalid email address'),
     password: z.string()
         .min(6, "Password must be at least 8 characters")
         .max(100, "Full name must be at most 100 characters")
@@ -34,23 +31,19 @@ export default function LoginForm() {
     const { register, handleSubmit } = useForm<FormLogin>({ resolver: zodResolver(loginSchema) })
     const router = useRouter();
     const q = useSearchParams()
-    const t = useTranslations('login-page')
+    const t = useTranslations()
 
-    const onSubmit = handleSubmit(async ({ username, password }) => {
+    const onSubmit = handleSubmit(async ({ email, password }) => {
         const callbackUrl = q.get('callbackUrl') || "/dashboard"
         const res = await signIn("credentials", {
-            email: username,
+            email,
             password,
             callbackUrl,
             redirect: false
         });
 
-        console.log(res);
-
-
-
         if (!res?.ok) {
-            toast(t('incorrect-credential'));
+            toast(t('login-page.incorrect-credential'));
         } else {
             router.push('/dashboard')
         }
@@ -61,18 +54,18 @@ export default function LoginForm() {
     return <form onSubmit={(e) => { e.preventDefault(); onSubmit() }} className="flex flex-col gap-6">
         <Field>
             <FieldLabel>
-                {t('username')}
+                {t('common.email')}
             </FieldLabel>
-            <Input {...register('username')} />
+            <Input {...register('email')} />
         </Field>
 
         <Field>
             <FieldLabel>
-                {t('password')}
+                {t('common.password')}
             </FieldLabel>
             <Input type="password" {...register('password')} />
         </Field>
 
-        <Button type="submit">{t('login')}</Button>
+        <Button type="submit">{t('login-page.login')}</Button>
     </form >
 }

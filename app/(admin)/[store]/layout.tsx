@@ -17,14 +17,14 @@ type Props = {
 }
 
 export default async function AdminLayout({ children }: Props) {
-  const c = await cookies()
-  const currentStore = c.get('current-store')
+  // const c = await cookies()
+  // const currentStore = c.get('current-store')
 
-  if (!currentStore) {
-    redirect("/stores")
-  } else {
-    redirect(`/${currentStore}/dashboard`)
-  }
+  // if (!currentStore) {
+  //   redirect("/stores")
+  // } else {
+  //   redirect(`/${currentStore}/dashboard`)
+  // }
 
   return (
     <SidebarProvider>

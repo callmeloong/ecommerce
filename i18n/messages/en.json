@@ -1,10 +1,29 @@
 {
+  "common": {
+    "or": "Or",
+    "email": "Email",
+    "password": "Password",
+    "fullname": "Full name",
+    "phone": "Phone number"
+  },
   "login-page": {
     "title": "Welcome back!",
     "sub-title": "Enter your credential to access the control panel.",
-    "username": "Username",
     "password": "Password",
     "login": "Login",
-    "incorrect-credential": "Incorrect credential. Please try again."
+    "incorrect-credential": "Incorrect credential. Please try again.",
+    "sign-in-google": "Sign in with Google",
+    "dont-have-an-account": "Don't have an account?"
+  },
+  "sign-up-page": {
+    "title": "Sign up for a free account",
+    "sub-title": "Managing your store is easier than ever!",
+    "fullname": "Full name",
+    "phone": "Phone number",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "sign-up": "Sign up",
+    "sign-up-google": "Sign up with Google"
   }
 }

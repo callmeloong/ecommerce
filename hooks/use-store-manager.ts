@@ -1,7 +1,9 @@
 import { slugify } from "@/lib/slugify";
+import { TStoreItem } from "@/types/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useSWR from "swr";
 import * as z from "zod";
 
 export type TStoreForm = {
@@ -18,10 +20,7 @@ const storeSchema = z.object({
     .string()
     .min(2, "Store domain must be at least 2 characters")
     .max(63, "Store domain must be at most 63 characters")
-    .regex(
-      /^((?!-)[A-Za-z0-9-]{1,63}(?<!-)){2,63}$/,
-      "Invalid domain format"
-    ),
+    .regex(/^((?!-)[A-Za-z0-9-]{1,63}(?<!-)){2,63}$/, "Invalid domain format"),
 });
 
 export function useStoreManager() {
@@ -33,6 +32,13 @@ export function useStoreManager() {
 
   const storeName = watch("storeName");
 
+  const { data, isLoading, error } = useSWR<{ stores: TStoreItem[] }>(
+    "/api/stores",
+    {
+      fallbackData: { stores: [] },
+    }
+  );
+
   useEffect(() => {
     setValue("storeDomain", slugify(storeName ?? ""));
   }, [storeName]);
@@ -41,5 +47,10 @@ export function useStoreManager() {
     console.log(data);
   };
 
-  return { formStore, submit: handleSubmit(onSubmit) };
+  return {
+    formStore,
+    submit: handleSubmit(onSubmit),
+    data,
+    isLoading,
+  };
 }

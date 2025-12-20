@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 
 export default async function LoginPage() {
     const session = await getServerSession(authOptions);
-    const t = await getTranslations('login-page');
+    const t = await getTranslations();
     if (session?.user?.id) {
         redirect("/dashboard");
     }
@@ -23,19 +23,21 @@ export default async function LoginPage() {
         <div className="col-span-3 flex justify-center items-center">
             <div className="flex flex-col gap-8 max-w-[400px] mx-auto">
                 <div className="flex flex-col gap-3">
-                    <h1 className="text-3xl font-bold">{t('title')}</h1>
-                    <span className="text-muted-foreground">{t('sub-title')}</span>
+                    <h1 className="text-3xl font-bold">{t('login-page.title')}</h1>
+                    <span className="text-muted-foreground">{t('login-page.sub-title')}</span>
                 </div>
 
                 <LoginForm />
 
                 <div className="flex w-full gap-2 items-center text-muted-foreground">
-                    <Separator className="flex-1" />Or<Separator className="flex-1" />
+                    <Separator className="flex-1" />{t('common.or')}<Separator className="flex-1" />
                 </div>
 
-                <Button variant="outline">Sign in with Google</Button>
+                <Button variant="outline">{t('login-page.sign-in-google')}</Button>
 
-                <span>Don't have an account? <Link href="/signup">Sign up</Link></span>
+                {/* <div className="text0"> */}
+                <span className="mx-auto">{t("login-page.dont-have-an-account")} <Link href="/signup">Sign up</Link></span>
+                {/* </div> */}
             </div>
         </div>
         <div className="col-span-4 bg-neutral-200/20 border-l border-neutral-400/50 ">

@@ -6,9 +6,11 @@ import {
     Bot,
     Command,
     Frame,
+    LayoutDashboard,
     LifeBuoy,
     Map,
     PieChart,
+    Receipt,
     ScanBarcode,
     Send,
     Settings2,
@@ -28,6 +30,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { StoreSwitcher } from "@/components/shared/store-switcher"
 
 const data = {
     user: {
@@ -37,26 +40,45 @@ const data = {
     },
     navMain: [
         {
+            title: "Dashboard",
+            url: "dashboard",
+            icon: LayoutDashboard,
+        },
+        {
+            title: "Orders",
+            url: "orders",
+            icon: Receipt,
+            items: [
+                {
+                    title: "All orders",
+                    url: "orders",
+                },
+                {
+                    title: "Tracking management",
+                    url: "orders/tracking",
+                },
+            ],
+        },
+        {
             title: "Products",
-            url: "/products",
+            url: "products",
             icon: ScanBarcode,
-            isActive: true,
             items: [
                 {
                     title: "Product list",
-                    url: "/products",
+                    url: "products",
                 },
                 {
                     title: "Collections",
-                    url: "/products/collections",
+                    url: "products/collections",
                 },
                 {
                     title: "Attributes",
-                    url: "/products/attributes",
+                    url: "products/attributes",
                 },
                 {
                     title: "Report Analytics",
-                    url: "/products/report-analytics",
+                    url: "products/report-analytics",
                 },
             ],
         },
@@ -164,7 +186,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <a href="#">
+                            {/* <a href="#">
                                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                                     <Command className="size-4" />
                                 </div>
@@ -172,7 +194,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                                     <span className="truncate font-medium">Acme Inc</span>
                                     <span className="truncate text-xs">Enterprise</span>
                                 </div>
-                            </a>
+                            </a> */}
+                            <StoreSwitcher />
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>

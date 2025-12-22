@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { Card } from "../ui/card"
 import { Button } from "../ui/button"
 import { TiptapEditor } from "../shared/tiptap-editor"
+import FileUpload from "../shared/file-upload"
 
 type Props = {
     product: Product
@@ -71,30 +72,35 @@ export function ProductForm({ product }: Props) {
                 <AccordionItem value="item-2">
                     <AccordionTrigger>Product Media</AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-4 text-balance">
-                        <p>
-                            We offer worldwide shipping through trusted courier partners.
-                            Standard delivery takes 3-5 business days, while express shipping
-                            ensures delivery within 1-2 business days.
-                        </p>
-                        <p>
-                            All orders are carefully packaged and fully insured. Track your
-                            shipment in real-time through our dedicated tracking portal.
-                        </p>
+                        <FileUpload />
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
                     <AccordionTrigger>Product Variants</AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-4 text-balance">
-                        <p>
-                            We stand behind our products with a comprehensive 30-day return
-                            policy. If you&apos;re not completely satisfied, simply return the
-                            item in its original condition.
-                        </p>
-                        <p>
-                            Our hassle-free return process includes free return shipping and
-                            full refunds processed within 48 hours of receiving the returned
-                            item.
-                        </p>
+                        <div className="flex gap-4">
+                            <div className="border border-dashed border-neutral-400 max-w-[100px] w-full aspect-square"></div>
+                            <Field className="col-span-1">
+                                <FieldLabel>
+                                    Status
+                                </FieldLabel>
+                                <Input {...register('status')} />
+                            </Field>
+
+                            <Field className="col-span-1">
+                                <FieldLabel>
+                                    Status
+                                </FieldLabel>
+                                <Input {...register('status')} />
+                            </Field>
+
+                            <Field className="col-span-1">
+                                <FieldLabel>
+                                    Status
+                                </FieldLabel>
+                                <Input {...register('status')} />
+                            </Field>
+                        </div>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
